@@ -78,6 +78,8 @@ features["txn_last_price"] = df["txn_last_price"].fillna(0)
 features["discount"] = (
     df["txn_last_list_price"].fillna(0) - df["txn_last_price"].fillna(0)
 ).clip(lower=0)
+features["txn_last_auto_renew"] = df["txn_last_auto_renew"].fillna(0)
+features["txn_cancel_count"] = df["txn_cancel_count"].fillna(0)
 
 # ---------------------------------------------------------------------------
 # Train / val split (fixed — do not change seed or fraction)
