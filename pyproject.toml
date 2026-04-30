@@ -1,0 +1,16 @@
+[project]
+name = "autoresearch-churn"
+version = "0.1.0"
+description = "Autonomous churn prediction research — KKBox dataset"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "kaggle>=1.6.0",
+    "py7zr>=0.20.0",
+    "lightgbm>=4.3.0",
+    "numpy>=1.26.0",
+    "pandas>=2.1.0",
+    "pyarrow>=14.0.0",
+    "requests>=2.32.0",
+    "scikit-learn>=1.4.0",
+]
