@@ -106,7 +106,7 @@ X_train, X_val, y_train, y_val = train_test_split(
 # ---------------------------------------------------------------------------
 
 model = lgb.LGBMClassifier(
-    n_estimators=500,
+    n_estimators=1500,
     learning_rate=0.05,
     num_leaves=63,
     max_depth=-1,
@@ -124,7 +124,8 @@ model = lgb.LGBMClassifier(
 model.fit(
     X_train, y_train,
     eval_set=[(X_val, y_val)],
-    callbacks=[lgb.early_stopping(50, verbose=False), lgb.log_evaluation(period=-1)],
+    eval_metric="auc",
+    callbacks=[lgb.early_stopping(100, verbose=False), lgb.log_evaluation(period=-1)],
 )
 
 # ---------------------------------------------------------------------------
