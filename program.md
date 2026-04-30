@@ -86,7 +86,7 @@ d4e5f6g	0.844500	LightGBM	keep	log-transform total_secs, increase n_estimators t
 
 ## The experiment loop
 
-LOOP FOREVER:
+LOOP UNTIL STOPPED (see stopping criteria below):
 
 1. Check the current git state.
 2. Form a hypothesis — what feature, transformation, or model change might improve val_auc?
@@ -99,7 +99,7 @@ LOOP FOREVER:
 9. If val_auc improved → keep the commit, advance.
 10. If val_auc equal or worse → `git reset --hard HEAD~1`, move on.
 
-**Do not pause to ask if you should continue.** The human may be away. Run until interrupted.
+**Do not pause to ask if you should continue.** The human may be away. Run until a stopping criterion is met.
 
 **Crash policy**: If a crash is a trivial bug (typo, missing import), fix and re-run. If the idea itself is broken, log as crash and move on.
 
@@ -108,6 +108,21 @@ LOOP FOREVER:
 - Try a completely different model family
 - Revisit the raw columns in `prepare.py` for features you haven't used yet (check `df.columns`)
 - Try feature selection (drop low-importance features and simplify)
+
+## Stopping criteria
+
+Stop the loop — do not start another experiment — when **either** condition is met:
+
+**Condition A — Plateau**: The total val_auc improvement across the last 5 `keep` experiments
+is less than **0.001**. Compute this as `max_auc_in_last_5_keeps - min_auc_in_last_5_keeps < 0.001`.
+Discard and crash rows do not count toward the 5.
+
+**Condition B — Budget**: The total number of experiments (all statuses) reaches **50**.
+
+When stopping:
+1. Run the leakage audit from `skill.md` on the current best model.
+2. Write `CHECKPOINT.md` with: best val_auc, best commit, full results table, leakage audit summary, and what you would have tried next.
+3. Print a final summary to stdout.
 
 **Context on the data** (use this to generate hypotheses):
 - KKBox is a music streaming subscription service in Taiwan/SE Asia

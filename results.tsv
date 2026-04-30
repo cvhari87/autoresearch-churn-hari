@@ -1,0 +1,7 @@
+commit	val_auc	model	status	description
+bb1f485	0.912000	LightGBM	keep	baseline
+8504ca6	0.972195	LightGBM	keep	add txn_last_auto_renew and txn_cancel_count features
+ad02cf1	0.979772	LightGBM	keep	add days_since_last_txn and log-transform total_secs
+11137c1	0.979979	LightGBM	keep	add cancel_rate ratio and log-transform days_since_last_listen
+6619fc9	0.979459	LightGBM	discard	increase n_estimators to 1500 (still hit cap, AUC dropped slightly)
+0812a84	0.980011	LightGBM	keep	use eval_metric=auc for early stopping, n_estimators=1500 (converges at 456)

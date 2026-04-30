@@ -1,0 +1,30 @@
+{
+  "feature_names": [
+    "tenure_days",
+    "city",
+    "age",
+    "gender",
+    "registered_via",
+    "log_days",
+    "log_total_secs",
+    "log_mean_secs",
+    "completion_rate",
+    "unique_ratio",
+    "days_since_last_listen",
+    "listening_span_days",
+    "txn_count",
+    "txn_last_plan_days",
+    "txn_last_price",
+    "discount",
+    "txn_last_auto_renew",
+    "txn_cancel_count",
+    "days_since_last_txn",
+    "log_total_secs_log",
+    "cancel_rate",
+    "days_since_last_listen_log"
+  ],
+  "ref_date": "2017-03-31T00:00:00",
+  "val_auc": 0.980011,
+  "best_iteration": 456,
+  "trained_at": "2026-04-30T16:26:43.232314"
+}
