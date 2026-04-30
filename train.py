@@ -84,6 +84,10 @@ features["days_since_last_txn"] = (
     REF_DATE - pd.to_datetime(df["txn_last_date"], errors="coerce")
 ).dt.days.fillna(999)
 features["log_total_secs_log"] = np.log1p(df["log_total_secs"].fillna(0))
+cancel_count = df["txn_cancel_count"].fillna(0)
+txn_count = df["txn_count"].fillna(1).replace(0, 1)
+features["cancel_rate"] = cancel_count / txn_count
+features["days_since_last_listen_log"] = np.log1p(features["days_since_last_listen"])
 
 # ---------------------------------------------------------------------------
 # Train / val split (fixed — do not change seed or fraction)
