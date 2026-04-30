@@ -80,6 +80,10 @@ features["discount"] = (
 ).clip(lower=0)
 features["txn_last_auto_renew"] = df["txn_last_auto_renew"].fillna(0)
 features["txn_cancel_count"] = df["txn_cancel_count"].fillna(0)
+features["days_since_last_txn"] = (
+    REF_DATE - pd.to_datetime(df["txn_last_date"], errors="coerce")
+).dt.days.fillna(999)
+features["log_total_secs_log"] = np.log1p(df["log_total_secs"].fillna(0))
 
 # ---------------------------------------------------------------------------
 # Train / val split (fixed — do not change seed or fraction)
