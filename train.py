@@ -107,9 +107,9 @@ X_train, X_val, y_train, y_val = train_test_split(
 # ---------------------------------------------------------------------------
 
 model = lgb.LGBMClassifier(
-    n_estimators=1500,
-    learning_rate=0.05,
-    num_leaves=63,
+    n_estimators=2000,
+    learning_rate=0.03,
+    num_leaves=127,
     max_depth=-1,
     min_child_samples=20,
     subsample=0.8,
