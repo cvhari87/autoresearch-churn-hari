@@ -89,6 +89,7 @@ txn_count = df["txn_count"].fillna(1).replace(0, 1)
 features["cancel_rate"] = cancel_count / txn_count
 features["days_since_last_listen_log"] = np.log1p(features["days_since_last_listen"])
 features["cancel_x_recency"] = features["cancel_rate"] * features["days_since_last_listen_log"]
+features["plan_value"] = df["txn_last_plan_days"].fillna(30) * df["txn_last_price"].fillna(0)
 
 # ---------------------------------------------------------------------------
 # Train / val split (fixed — do not change seed or fraction)
