@@ -5,3 +5,15 @@ ad02cf1	0.979772	LightGBM	keep	add days_since_last_txn and log-transform total_s
 11137c1	0.979979	LightGBM	keep	add cancel_rate ratio and log-transform days_since_last_listen
 6619fc9	0.979459	LightGBM	discard	increase n_estimators to 1500 (still hit cap, AUC dropped slightly)
 0812a84	0.980011	LightGBM	keep	use eval_metric=auc for early stopping, n_estimators=1500 (converges at 456)
+460fe71	0.980094	LightGBM	keep	add cancel_rate x days_since_last_listen_log interaction term
+e31fb5d	0.979875	LightGBM	discard	add missing-value flags for tenure, listen, txn dates
+b58f24b	0.979913	LightGBM	discard	add secs_per_day ratio feature
+3a004d5	0.980253	LightGBM	keep	num_leaves=127, learning_rate=0.03, n_estimators=2000
+b00f1d4	0.980255	LightGBM	discard	add txn_count_log (negligible +0.000002, simplicity criterion)
+36e8829	0.980279	LightGBM	keep	add plan_value interaction (plan_days x price)
+f3c15ce	0.980244	LightGBM	discard	min_child_samples=10 for finer splits
+8c1f919	0.980257	LightGBM	discard	add listening_span_log (log-transform of listening_span_days)
+11a2958	0.980223	LightGBM	discard	add tenure_log (log-transform of tenure_days)
+433f366	0.980158	LightGBM	discard	add days_since_last_txn_log (log-transform)
+448ec82	0.980362	LightGBM	keep	subsample=0.7, colsample_bytree=0.7 (tighter regularization)
+6497c43	0.980157	LightGBM	discard	reg_alpha=0.05, reg_lambda=0.05 (less L1/L2 regularization)
